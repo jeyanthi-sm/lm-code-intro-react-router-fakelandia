@@ -1,7 +1,7 @@
 import { Route,Routes } from 'react-router-dom';
 import Home from './Home';
 import Confession from './Confession';
-import Misdemeanour from './Misdemeanour'
+import Misdemeanour from './Misdemean'
 import MainLayout from './MainLayout';
 import NotFound from './NotFound';
 
@@ -15,5 +15,4 @@ export const FakelandiaRouter : React.FC = () => <>
       <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
-    
     </>;
