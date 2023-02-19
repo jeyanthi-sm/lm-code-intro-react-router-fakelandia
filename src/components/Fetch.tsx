@@ -1,5 +1,6 @@
 import React, { createContext } from "react";
 import { useState, useEffect,  useMemo } from "react";
+import PunishmentImage from "./PunishmentImage";
 export interface FetchProps {
   url:string;
 }
@@ -31,6 +32,30 @@ const Fetch:React.FC<FetchProps> = (inputFetchProps:FetchProps) => {
 return (
     <fakelandiaContext.Provider value={{apiGetMisDemeanour,setapiGetMisDemeanour}}> 
 <>
+<table border={1}> 
+<tr> 
+<th> CitizenId </th>
+<th> Date </th>
+<th> Misdemeanour </th>
+<th> Punishment Idea </th>
+</tr>
+<tbody>
+    
+    {
+apiGetMisDemeanour.misdemeanours.map((misdemeanour, index) => {
+   return <> 
+   <tr><td>{misdemeanour["citizenId"]}</td>
+       <td>{misdemeanour["date"]}</td>
+       <td>{misdemeanour["misdemeanour"]}</td>
+       <td><PunishmentImage width={100} height={100}/></td></tr>
+    </>
+    })
+   }  
+</tbody>
+</table>
+ 
+</>
+
 <ul> 
  { apiGetMisDemeanour.misdemeanours.map((misdemeanour) => {
     
@@ -38,8 +63,6 @@ return (
    })}   
 
  </ul>
- 
-</>
 
 <ul> 
  { misdemeanourLiftFilter.map((misdemeanour) => {
