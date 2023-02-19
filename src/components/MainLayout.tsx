@@ -8,15 +8,12 @@ const MainLayout: React.FC = () => (
    <ul>
       <li> FAKELANDIA JUSTICE DEPARTMENT</li>
       <li> <Link to='/'> Home </Link></li>
-      <li> <Link to='/Misdemeanour'> MisdeMeanour</Link></li>   
+      <li> <Link to='/Misdemeanour'> Misdemeanour</Link></li>   
       <li> <Link to='/Confession'> Confession to us</Link>        </li>
     </ul>
   </nav>
   <Outlet />
   </header>
-  <main className="mainClass">
-    <MainBody />
-  </main>
   <footer className="footerClass">
     <FooterFakeLandia />
   </footer>
