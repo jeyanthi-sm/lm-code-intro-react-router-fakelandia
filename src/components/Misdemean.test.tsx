@@ -1,4 +1,4 @@
-import Misdemeanour from "./Misdemeanour";
+import Misdemeanour from "./Misdemean";
 import { render, screen } from "@testing-library/react";
 describe("Testing Basic Misdemeanour Component", () => {
   test("Testing Basic Misdemanour Component", () => {
