@@ -1,17 +1,18 @@
 import { useState } from "react";
 import ConfessionSubject from "./ConfessionSubject";
 import ContactReason from "./ContactReason";
+import ContactReasonDetails from "./ContactReasonDetails";
 
 const Confession:React.FC = () => {
 type formData = {
     subject:string;
     contactReason:string;
-    contactDetails:string;
+    contactReasonDetails:string;
 }
 const [formInput, setFormInput ] = useState<formData>({
    subject:"subject",
    contactReason:"Confession",
-   contactDetails:"Details for contact",
+   contactReasonDetails:"Details for contact",
 });
 return (
 <> 
@@ -32,6 +33,13 @@ return (
     newFormInput.contactReason = e;
     setFormInput(newFormInput);
 }}/>
+<ContactReasonDetails reason="Contact Reason Details" onChangeHandler={(e) => {
+    const newFormInput = {...formInput};
+    newFormInput.contactReasonDetails = e;
+    setFormInput(newFormInput);
+}
+
+} />
 </div>
 </>
 )
