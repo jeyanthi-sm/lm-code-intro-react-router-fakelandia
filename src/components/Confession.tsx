@@ -1,5 +1,7 @@
 import { useState } from "react";
 import ConfessionSubject from "./ConfessionSubject";
+import ContactReason from "./ContactReason";
+
 const Confession:React.FC = () => {
 type formData = {
     subject:string;
@@ -19,11 +21,18 @@ return (
     <li> However if you're just having a hard day and need to vent then you're welcome to contact us here too. Upto you!  </li>
 </ul>
 </div>
+<div className="FormInput"> 
 <ConfessionSubject subjectValue="Subject" onChangeHandler={ (e) => {
     const newFormInput = {...formInput};
     newFormInput.subject = e;
     setFormInput(newFormInput);
 }}/>
+<ContactReason reason="lift" onChangeHandler={ (e) => {
+    const newFormInput = {...formInput};
+    newFormInput.contactReason = e;
+    setFormInput(newFormInput);
+}}/>
+</div>
 </>
 )
 }
