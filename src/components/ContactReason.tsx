@@ -1,4 +1,3 @@
-import { type } from "os";
 import React, { useState } from "react"
 import { MISDEMEANOURS, JUST_TALK } from "../types/misdemeanours.types"
 export interface ContactReasonProps {
