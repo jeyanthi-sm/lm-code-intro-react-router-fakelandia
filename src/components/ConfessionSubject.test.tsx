@@ -15,14 +15,19 @@ function beforeEachTest() {
 describe("captures renew changes", () => {
   test("captures renew changes", async () => {
     beforeEachTest();
-    const CONFESSIONSUBJECT = "New Value";
+    const CONFESSIONSUBJECT = "NEW VALUE";
     const user = userEvent.setup();
 
     const node = screen.getByRole("textbox");
+    
 
     await user.type(node, CONFESSIONSUBJECT);
 
     expect(mockFunction).toHaveBeenCalledTimes(9);
+    expect(mockFunction).toHaveBeenCalledWith(CONFESSIONSUBJECT);
+
+    
+    
   });
 });
 
