@@ -46,8 +46,20 @@
   list-style-type: none;
   display: flex;
   justify-content: space-evenly;
+  
+}
+.disclosure ul{
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
 }
 
+.disclosure li{
+  text-decoration-style: none;
+  text-decoration: none;
+  color: red;
+
+}
 .headerClass li {
 
   text-decoration-style: none;
@@ -78,7 +90,7 @@ table {
   table-layout: auto;
   width: 100%;
 }
-th {
+thead {
   display: table-cell;
   vertical-align: inherit;
   font-weight: bold;
@@ -86,3 +98,21 @@ th {
   margin-left: auto;
   margin-right: auto;
 }
+/* confession form inputs */
+/* confession form inputs */
+.confessionform {
+  display: flex;
+  flex-direction: row;
+}
+
+
+
+.confessionInputs {
+  display: flex;
+  flex-direction: row;
+  margin: 1%;
+  border:1%;
+  width: 100%;
+  justify-content: space-evenly;
+}
+

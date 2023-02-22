@@ -1,42 +1,49 @@
-import React, { useState } from "react"
-import { MISDEMEANOURS, JUST_TALK } from "../types/misdemeanours.types"
+import e from "express";
+import React, { SetStateAction, useState } from "react"
+import { MISDEMEANOURS,  ALLCONTACTREASONS } from "../types/misdemeanours.types"
+import ErrorMessage from "./ErrorMessage";
+import { validateContactReason } from "./utils/validateConfessionContactReason";
 export interface ContactReasonProps {
     reason:string;
-    onChangeHandler: (reason:string) => void; 
-}
-
-const ALLMISDEMEANOURS  = [...MISDEMEANOURS, JUST_TALK];
+   onChangeHandler: (reason:string) => void; 
+  }
 
 const ContactReason:React.FC<ContactReasonProps> = (inputContactReasonProps) => {
-    const [demeanourSelect, setDemeanourSelect] = useState();
+    const [demeanourSelect, setDemeanourSelect] = useState<string>("");
     const [errorValidation, setErrorValidation] = useState("");
-    const contactReasonValidation :(value:string) => string = (value ) => {
-    
-        if (value === typeof ALLMISDEMEANOURS) return "OK";
-        else return "ERROR! Not a Valid Value";
-    };
+
+    const handleChange= (event: React.ChangeEvent<HTMLSelectElement>) =>
+    {     setDemeanourSelect(event.target.value);
+            
+          const errorMessage = validateContactReason(event.target.value);
+          (typeof errorMessage === "string") ? setErrorValidation(errorMessage):setErrorValidation("OK")
+          inputContactReasonProps.onChangeHandler(event.target.value);
+            
+           
+    }
+
     
 return (
 <> 
-<label htmlFor="SubjectLineId">Subject </label>
-<select>
-{ typeof ALLMISDEMEANOURS &&  ALLMISDEMEANOURS.map((misdemvalue, index) => {
-return  <option key={index} value = {demeanourSelect} onChange={(e) =>{
-    const errorMessage = contactReasonValidation(misdemvalue);
-    setErrorValidation(errorMessage);
-    inputContactReasonProps.onChangeHandler(misdemvalue);
-  }
- 
-    
-    
+<div className="confessionInputs">
+      
+<label htmlFor="ContactReasonId">Reason for contact</label>
+
+
+
+<select id="ContactReasonId" value={demeanourSelect} name="ContactReason" 
+onChange={handleChange} >
+{ typeof ALLCONTACTREASONS &&  ALLCONTACTREASONS.map((misdemvalue, index) => {
+return  <option key={index} value = {misdemvalue}> {misdemvalue} </option> })}
   
-}> { misdemvalue }</option>
-
-})}
 </select>
-{errorValidation}
-<div> {errorValidation}</div>
-
+</div>
+{errorValidation !== "OK" && (
+        <div>
+          <ErrorMessage message={errorValidation} />
+        </div>
+      )}
+     
 </>
 )
 }
