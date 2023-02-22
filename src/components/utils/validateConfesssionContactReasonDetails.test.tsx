@@ -11,7 +11,7 @@ function beforeEachTest() {
         const MOCKMAXLENGTHCONFESSIONREASONDETAILS =
   "iroejgioejgioregioergioerjgioregioregoejrgiorejgiorejgioegjierogejogioiroejgioejgioregioergioerjgioregioregoejrgiorejgiorejgioegjierogejogioiroejgioejgioregioergioerjgioregioregoejrgiorejgiorejgioegjierogejogioiroejgioejgioregioergioerjgioregioregoejrgiorejgiorejgioegjierogejogio";
 
-const MOCKMINLENGTHCONFESSIONREASONDETAILS = "ABC";
+const MOCKMINLENGTHCONFESSIONREASONDETAILS = "AB";
 
 const onChangeValidation = async (inputConfessionReasonDetails: string) => {
   beforeEachTest();
