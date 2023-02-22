@@ -1,5 +1,7 @@
 import React  from "react";
 import { useState } from "react";
+import ErrorMessage from "./ErrorMessage";
+import { validateSubjectValue } from "./utils/validateConfessionSubject";
 export interface ConfessionSubjectProps {
     subjectValue:string;
     onChangeHandler: (value:string) => void;
@@ -7,17 +9,12 @@ export interface ConfessionSubjectProps {
 
 const ConfessionSubject:React.FC<ConfessionSubjectProps> = (inputConfessionSubjectProps) => {
    const [subjectValue, setSubjectValue] = useState();
-   const [errorValidation, setErrorValidation] = useState("");
-  const validateSubjectValue = (input:string) => {
-    const subjectValueRegexp = RegExp(/^[a-z]{3,23}$/, "i"); //find any character not between a-z
-    const matchPattern = subjectValueRegexp.test(input);
-    if (!matchPattern)
-      return "ERROR! Length  Must be between 3 and 23 characters Numbers and Special Characters Not allowed";
-    else return "OK";
-  };
-  
+   const [errorValidation, setErrorValidation] = useState<boolean|string>();
+   
+
    return (
    <>
+      <div className="confessionInputs">
       <label htmlFor="SubjectLineId">Subject </label>
       <input
         id="SubjectLineId"
@@ -30,10 +27,14 @@ const ConfessionSubject:React.FC<ConfessionSubjectProps> = (inputConfessionSubje
           inputConfessionSubjectProps.onChangeHandler(e.target.value);
         }}
       />
-      {!errorValidation }
-      <div> {errorValidation}</div>
-   </>
-   
-   )  
-}
+      </div>
+       {errorValidation !== "OK" && (
+        <div>
+          <ErrorMessage message={errorValidation} />
+        </div>
+        
+      )}
+</>
+   )
+      }
 export default ConfessionSubject;
