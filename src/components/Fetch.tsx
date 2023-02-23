@@ -1,41 +1,51 @@
 //import React, { createContext } from "react";
-import { useState, createContext, useEffect, useMemo } from "react";
+import { useState, createContext, useEffect, useMemo, useContext } from "react";
 import MisdemeanourDefault from "./MisdemeanourDefault";
 //import { useState, useEffect } from "react";
 import PunishmentImage from "./PunishmentImage";
-import { FakelandiaContext } from './context';
+import { FakelandiaContext, MisdemeanourContext } from './context';
 import Misdemean from "./Misdemean";
 
 export interface FetchProps {
-  url:string;
+  url?:string;
+  misdemeanourSelect?:string;
 }
 const FETCHURL = 'http://localhost:8080/api/misdemeanours/10';
 
 const Fetch:React.FC<FetchProps> = (inputFetchProps:FetchProps) => {
+    
+    const {url, misdemeanourSelect} = inputFetchProps;
+    
+    const passedvalue = useContext(MisdemeanourContext);
+    console.log(passedvalue);
+    
     const [apiGetMisDemeanour, setapiGetMisDemeanour] = useState({misdemeanours:[]});
        
-
+    
     const [apiError, setapiError] = useState<string>();
+    
     useEffect(() => {const fetchApiDemeanour = async () => {
       try {
-        const response = await fetch(inputFetchProps.url);
+        if (typeof url === "string") {
+
+        const response = await fetch(url);
         const json = await response.json();
         
         setapiGetMisDemeanour(json);
-        } catch (error) {
+        }} catch (error) {
         if (typeof error === "string") setapiError(error);
       }
       
     };
-    fetchApiDemeanour()}, [inputFetchProps.url] );
+    fetchApiDemeanour()}, [url] );
 
-    const handleChange= (event: React.ChangeEvent<HTMLSelectElement>) =>
+    /*const handleChange= (event: React.ChangeEvent<HTMLSelectElement>) =>
     {  
           console.log(event.target.value);
           console.log("Handlechange in Misdemean");
           
     
-    }
+    } */
     //const FakelandiaContext = createContext(); 
     //const fetchedMisdemeanour = useContext(FakelandiaContext);
     const misdemeanourLiftFilter = useMemo(() => apiGetMisDemeanour.misdemeanours.filter(element => element["misdemeanour"] === "lift"), [apiGetMisDemeanour.misdemeanours]);
@@ -48,8 +58,11 @@ const Fetch:React.FC<FetchProps> = (inputFetchProps:FetchProps) => {
 //<FakelandiaContext.Provider value={apiGetMisDemeanour}> 
 
 
-return (
-<>
+return ( 
+  <>
+  
+{misdemeanourSelect === "ALL" ? (
+
 <table border={1}> 
 <tr> 
 <thead> CitizenId </thead>
@@ -71,7 +84,8 @@ apiGetMisDemeanour.misdemeanours.map((misdemeanour, index) => {
    }  
 </tbody>
 </table>
-
+):
+misdemeanourSelect === "lift" ? (
 <table border={1}> 
 <tr> 
 <thead> CitizenId </thead>
@@ -93,7 +107,8 @@ misdemeanourLiftFilter.map((misdemeanour, index) => {
    }  
 </tbody>
 </table>
-
+):
+misdemeanourSelect === "rudeness" ? (
 <table border={1}> 
 <tr> 
 <thead> CitizenId </thead>
@@ -115,7 +130,8 @@ misdemeanourRudenessFilter.map((misdemeanour, index) => {
    }  
 </tbody>
 </table>
-
+):
+misdemeanourSelect === "vegetables" ? ( 
 <table border={1}> 
 <tr> 
 <thead> CitizenId </thead>
@@ -138,7 +154,8 @@ misdemeanourVegetablesFilter.map((misdemeanour, index) => {
 </tbody>
 </table>
 
-
+)
+:(
 <table border={1}> 
 <tr> 
 <thead> CitizenId </thead>
@@ -160,6 +177,7 @@ misdemeanourUnitedFilter.map((misdemeanour, index) => {
    }  
 </tbody>
 </table>
+)}
 </>
 )}
 export default Fetch;
