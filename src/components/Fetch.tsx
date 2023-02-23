@@ -1,9 +1,16 @@
-import React, { createContext } from "react";
-import { useState, useEffect,  useMemo } from "react";
+//import React, { createContext } from "react";
+import { useState, createContext, useEffect, useMemo } from "react";
+import MisdemeanourDefault from "./MisdemeanourDefault";
+//import { useState, useEffect } from "react";
 import PunishmentImage from "./PunishmentImage";
+import { FakelandiaContext } from './context';
+import Misdemean from "./Misdemean";
+
 export interface FetchProps {
   url:string;
 }
+const FETCHURL = 'http://localhost:8080/api/misdemeanours/10';
+
 const Fetch:React.FC<FetchProps> = (inputFetchProps:FetchProps) => {
     const [apiGetMisDemeanour, setapiGetMisDemeanour] = useState({misdemeanours:[]});
        
@@ -13,7 +20,7 @@ const Fetch:React.FC<FetchProps> = (inputFetchProps:FetchProps) => {
       try {
         const response = await fetch(inputFetchProps.url);
         const json = await response.json();
-        console.log(json.misdemeanours);
+        
         setapiGetMisDemeanour(json);
         } catch (error) {
         if (typeof error === "string") setapiError(error);
@@ -21,27 +28,38 @@ const Fetch:React.FC<FetchProps> = (inputFetchProps:FetchProps) => {
       
     };
     fetchApiDemeanour()}, [inputFetchProps.url] );
-  const fakelandiaContext = createContext({apiGetMisDemeanour, setapiGetMisDemeanour}); 
-  
-  const misdemeanourLiftFilter = useMemo(() => apiGetMisDemeanour.misdemeanours.filter(element => element["misdemeanour"] === "lift"), [apiGetMisDemeanour.misdemeanours]);
-  const misdemeanourRudenessFilter = useMemo(() => apiGetMisDemeanour.misdemeanours.filter(element => element["misdemeanour"] === "rudeness"), [apiGetMisDemeanour.misdemeanours]);
-  const misdemeanourVegetablesFilter = useMemo(() => apiGetMisDemeanour.misdemeanours.filter(element => element["misdemeanour"] === "vegetables"), [apiGetMisDemeanour.misdemeanours]);
-  const misdemeanourUnitedFilter = useMemo(() => apiGetMisDemeanour.misdemeanours.filter(element => element["misdemeanour"] === "united"), [apiGetMisDemeanour.misdemeanours]);
-  
-  console.log(misdemeanourLiftFilter);
+
+    const handleChange= (event: React.ChangeEvent<HTMLSelectElement>) =>
+    {  
+          console.log(event.target.value);
+          console.log("Handlechange in Misdemean");
+          
+    
+    }
+    //const FakelandiaContext = createContext(); 
+    //const fetchedMisdemeanour = useContext(FakelandiaContext);
+    const misdemeanourLiftFilter = useMemo(() => apiGetMisDemeanour.misdemeanours.filter(element => element["misdemeanour"] === "lift"), [apiGetMisDemeanour.misdemeanours]);
+    const misdemeanourRudenessFilter = useMemo(() => apiGetMisDemeanour.misdemeanours.filter(element => element["misdemeanour"] === "rudeness"), [apiGetMisDemeanour.misdemeanours]);
+    const misdemeanourVegetablesFilter = useMemo(() => apiGetMisDemeanour.misdemeanours.filter(element => element["misdemeanour"] === "vegetables"), [apiGetMisDemeanour.misdemeanours]);
+    const misdemeanourUnitedFilter = useMemo(() => apiGetMisDemeanour.misdemeanours.filter(element => element["misdemeanour"] === "united"), [apiGetMisDemeanour.misdemeanours]);
+    
+//const FakelandiaContext = createContext({apiGetMisDemeanour, setapiGetMisDemeanour}); 
+//<FakelandiaContext.Provider value={{apiGetMisDemeanour,setapiGetMisDemeanour}}> 
+//<FakelandiaContext.Provider value={apiGetMisDemeanour}> 
+
+
 return (
-    <fakelandiaContext.Provider value={{apiGetMisDemeanour,setapiGetMisDemeanour}}> 
 <>
 <table border={1}> 
 <tr> 
-<th> CitizenId </th>
-<th> Date </th>
-<th> Misdemeanour </th>
-<th> Punishment Idea </th>
+<thead> CitizenId </thead>
+<thead> Date </thead>
+<thead> Misdemeanour </thead>
+<thead> Punishment Idea </thead>
 </tr>
 <tbody>
     
-    {
+    { apiGetMisDemeanour && 
 apiGetMisDemeanour.misdemeanours.map((misdemeanour, index) => {
    return <> 
    <tr><td>{misdemeanour["citizenId"]}</td>
@@ -53,49 +71,95 @@ apiGetMisDemeanour.misdemeanours.map((misdemeanour, index) => {
    }  
 </tbody>
 </table>
- 
+
+<table border={1}> 
+<tr> 
+<thead> CitizenId </thead>
+<thead> Date </thead>
+<thead> Misdemeanour </thead>
+<thead> Punishment Idea </thead>
+</tr>
+<tbody>
+    
+    {misdemeanourLiftFilter && 
+misdemeanourLiftFilter.map((misdemeanour, index) => {
+   return <> 
+   <tr><td>{misdemeanour["citizenId"]}</td>
+       <td>{misdemeanour["date"]}</td>
+       <td>{misdemeanour["misdemeanour"]}</td>
+       <td><PunishmentImage width={100} height={100}/></td></tr>
+    </>
+    })
+   }  
+</tbody>
+</table>
+
+<table border={1}> 
+<tr> 
+<thead> CitizenId </thead>
+<thead> Date </thead>
+<thead> Misdemeanour </thead>
+<thead> Punishment Idea </thead>
+</tr>
+<tbody>
+    
+    {misdemeanourRudenessFilter && 
+misdemeanourRudenessFilter.map((misdemeanour, index) => {
+   return <> 
+   <tr><td>{misdemeanour["citizenId"]}</td>
+       <td>{misdemeanour["date"]}</td>
+       <td>{misdemeanour["misdemeanour"]}</td>
+       <td><PunishmentImage width={100} height={100}/></td></tr>
+    </>
+    })
+   }  
+</tbody>
+</table>
+
+<table border={1}> 
+<tr> 
+<thead> CitizenId </thead>
+<thead> Date </thead>
+<thead> Misdemeanour </thead>
+<thead> Punishment Idea </thead>
+</tr>
+<tbody>
+    
+    {misdemeanourVegetablesFilter &&
+misdemeanourVegetablesFilter.map((misdemeanour, index) => {
+   return <> 
+   <tr><td>{misdemeanour["citizenId"]}</td>
+       <td>{misdemeanour["date"]}</td>
+       <td>{misdemeanour["misdemeanour"]}</td>
+       <td><PunishmentImage width={100} height={100}/></td></tr>
+    </>
+    })
+   }  
+</tbody>
+</table>
+
+
+<table border={1}> 
+<tr> 
+<thead> CitizenId </thead>
+<thead> Date </thead>
+<thead> Misdemeanour </thead>
+<thead> Punishment Idea </thead>
+</tr>
+<tbody>
+    
+    {misdemeanourUnitedFilter &&
+misdemeanourUnitedFilter.map((misdemeanour, index) => {
+   return <> 
+   <tr><td>{misdemeanour["citizenId"]}</td>
+       <td>{misdemeanour["date"]}</td>
+       <td>{misdemeanour["misdemeanour"]}</td>
+       <td><PunishmentImage width={100} height={100}/></td></tr>
+    </>
+    })
+   }  
+</tbody>
+</table>
 </>
-
-<ul> 
- { apiGetMisDemeanour.misdemeanours.map((misdemeanour) => {
-    
-    return <li key={misdemeanour["citizenId"]}> <p> {misdemeanour["citizenId"]} {misdemeanour["misdemeanour"]} {misdemeanour["date"]}  </p> </li>;
-   })}   
-
- </ul>
-
-<ul> 
- { misdemeanourLiftFilter.map((misdemeanour) => {
-    
-    return <li key={misdemeanour["citizenId"]}> <p> {misdemeanour["citizenId"]} {misdemeanour["misdemeanour"]} {misdemeanour["date"]}  </p> </li>;
-   })}   
-
- </ul>
- 
- <ul> 
- { misdemeanourRudenessFilter.map((misdemeanour) => {
-    
-    return <li key={misdemeanour["citizenId"]}> <p> {misdemeanour["citizenId"]} {misdemeanour["misdemeanour"]} {misdemeanour["date"]}  </p> </li>;
-   })}   
-
- </ul>
-
- <ul> 
- { misdemeanourVegetablesFilter.map((misdemeanour) => {
-    
-    return <li key={misdemeanour["citizenId"]}> <p> {misdemeanour["citizenId"]} {misdemeanour["misdemeanour"]} {misdemeanour["date"]}  </p> </li>;
-   })}   
-
- </ul>
- <ul> 
- { misdemeanourUnitedFilter.map((misdemeanour) => {
-    
-    return <li key={misdemeanour["citizenId"]}> <p> {misdemeanour["citizenId"]} {misdemeanour["misdemeanour"]} {misdemeanour["date"]}  </p> </li>;
-   })}   
-
- </ul>
-
-</fakelandiaContext.Provider>
-
 )}
 export default Fetch;
