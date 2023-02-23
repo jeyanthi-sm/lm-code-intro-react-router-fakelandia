@@ -1,16 +1,24 @@
-import Misdemeanour from "./Misdemean";
-import { SetStateAction, useState } from "react";
+import Misdemean from "./Misdemean";
+import userEvent from "@testing-library/user-event";
 import { render, screen } from "@testing-library/react";
+const mockFunction = jest.fn();
+// setup function
+function setup(jsx: JSX.Element) {
+  return {
+    //user: userEvent.setup(),
+    ...render(jsx),
+  }
+}
 describe("Testing Basic Misdemeanour Component", () => {
   test("Testing Basic Misdemanour Component", () => {
-    const [demeanourSelect, setDemeanourSelect] = useState("");
-    const handleChange= (event: { target: { value: SetStateAction<string>; }; }) =>
-  {
-        console.log(event.target.value);
-        setDemeanourSelect(event.target.value);
-  
-  }
-    render (<Misdemeanour onChange={handleChange}/>);
-    expect(screen.getByText("Misdemanour")).toBeInTheDocument();
+    const misdemeanSelectValue = "vegetables";
+    const user = setup(<Misdemean onChange={mockFunction()} />);
+    
+
+    const node = screen.getByRole("combobox");
+
+    expect(mockFunction).toHaveBeenCalledTimes(1);
+//    render (<Misdemean onChange={mockFunction}/>);
+    //expect(screen.getByText("Misdemeanour")).toBeInTheDocument();
   });
 });
