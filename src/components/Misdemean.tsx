@@ -1,6 +1,6 @@
 import { useState, useEffect, SetStateAction, useContext } from "react";
 import { MISDEMEANOURS } from "../types/misdemeanours.types";
-import { FakelandiaContext } from "./context";
+import { FakelandiaContext, MisdemeanourContext } from "./context";
 import Fetch from "./Fetch";
 import MisdemeanourDefault from "./MisdemeanourDefault";
 //import MisdemeanourDefault from "./MisDemeanourDefault";
@@ -20,7 +20,7 @@ const Misdemean:React.FC<Misdemeanprops> =(inputProps) =>
         console.log(event.target.value);
         console.log("Handlechange in Misdemean current");
         setDemeanourSelect(event.target.value);
-                 
+     
   
   } 
   return (
