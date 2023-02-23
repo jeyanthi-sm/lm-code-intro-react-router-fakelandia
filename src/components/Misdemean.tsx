@@ -1,9 +1,7 @@
-import { useState, useEffect, SetStateAction, useContext } from "react";
+import { useState, useContext } from "react";
 import { MISDEMEANOURS } from "../types/misdemeanours.types";
-import { FakelandiaContext, MisdemeanourContext } from "./context";
+import { MisdemeanourContext } from "./context";
 import Fetch from "./Fetch";
-import MisdemeanourDefault from "./MisdemeanourDefault";
-//import MisdemeanourDefault from "./MisDemeanourDefault";
 export interface Misdemeanprops {
   onChange:( e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
@@ -13,15 +11,14 @@ const Misdemean:React.FC<Misdemeanprops> =(inputProps) =>
   const [demeanourSelect, setDemeanourSelect] = useState("lift");
 
     
-  const passedvalue = useContext(FakelandiaContext);
+  const passedvalue = useContext(MisdemeanourContext);
   console.log(passedvalue);
   const handleChange= (event: React.ChangeEvent<HTMLSelectElement>) =>
   {  
         console.log(event.target.value);
         console.log("Handlechange in Misdemean current");
         setDemeanourSelect(event.target.value);
-     
-  
+        
   } 
   return (
     
@@ -32,7 +29,9 @@ const Misdemean:React.FC<Misdemeanprops> =(inputProps) =>
   return  <option key={index} value = {misdemvalue}>  { misdemvalue }</option>
  })}
   </select>
-  <Fetch url={FETCHURL} />
+<MisdemeanourContext.Provider value = {demeanourSelect}> 
+  <Fetch url={FETCHURL} misdemeanourSelect= {demeanourSelect}/>
+  </MisdemeanourContext.Provider>
   </>
 )
 }
