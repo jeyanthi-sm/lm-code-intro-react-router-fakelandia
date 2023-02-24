@@ -21,7 +21,6 @@ describe("Testing Basic Submit Button Enabled", () => {
     describe("Testing Basic Submit Button Enabled on", () => {
       test("Testing Basic Submit Button Enabled on Change Y", async () => {
         render (<ConfessSubmitButton canBeEnabled={true} onClickHandler={jest.fn}/>);
-        
         expect(screen.getByText("Submit Form")).toBeInTheDocument();
         expect(await screen.findByText("Submit Form")).toBeEnabled();    
       });
@@ -31,12 +30,11 @@ describe("Testing Basic Submit Button Enabled", () => {
         test("Testing Basic Submit Button enabled", async () => {
           const inputFormData = {
             subject:"Testing",
-            contactReason:"lift",
-            contactReasonDetails:"Eating green vegetables is not good",
+            reason:"lift",
+            details:"Using lift is not good for health. Use staircase instead",
         }
         const canBeEnabledResult = canSubmitButtonBeEnabled({...inputFormData});
-        //  expect(canBeEnabledResult).toBeFalsy();
-
+       
         render (<ConfessSubmitButton canBeEnabled={canBeEnabledResult} onClickHandler={jest.fn}/>);
         
         expect(screen.getByText("Submit Form")).toBeInTheDocument();
@@ -50,13 +48,11 @@ describe("Testing Basic Submit Button Enabled", () => {
       describe("Testing Basic CanSubmitButtonBeEnabled False", () => {
         test("Testing Basic Submit Button Disabled", async () => {
           const inputFormData = {
-            subject:"Testing",
-            contactReason:"just-talk",
-            contactReasonDetails:"talking is not good",
+            subject:"Testing Subject",
+            reason:"lift",
+            details:"Using Lift. Why? Use staircase. So you can be healthy for more time",
         }
         const canBeEnabledResult = canSubmitButtonBeEnabled({...inputFormData});
-        //  expect(canBeEnabledResult).toBeFalsy();
-
         render (<ConfessSubmitButton canBeEnabled={canBeEnabledResult} onClickHandler={jest.fn}/>);
         
         expect(screen.getByText("Submit Form")).toBeInTheDocument();
