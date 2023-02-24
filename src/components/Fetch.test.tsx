@@ -62,15 +62,16 @@ const SAMPLEFETCH = {
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
+const mockFunction = jest.fn();
 
 describe("Testing Basic Fetch Component", () => {
   test("Testing Basic Fetch Component", () => {
     render(<Fetch url={FETCHURL} />);
     const getAllMatchingColumnName = screen.getAllByRole('row',{name:/CitizenId Date Misdemeanour Punishment Idea/i});
+    console.log(getAllMatchingColumnName);
     expect(getAllMatchingColumnName[0]).toBeInTheDocument();
   });
 });
-const mockFunction = jest.fn();
 
 describe("Fetch Sample Data using MOCK Function", () => {
   test("Testing Fetch Sample", async () => {
