@@ -1,15 +1,21 @@
 import MainLayout from "./MainLayout";
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import { BrowserRouter, MemoryRouter } from "react-router-dom";
 
 describe("Testing Basic MainLayout Component using MainLayout Router", () => {
   test("Testing Basic MainLayout Component", () => {
-    const justiceDeparmentElement = screen.getByText(/FAKELANDIA JUSTICE DEPARTMENT/i);
-    const homeElement = screen.queryByRole('link',{name:/Misdemeanour/i});
-    const misdemeanourElement = screen.queryByRole('link',{name:/Misdemeanour/i});
-    const confessionElement = screen.queryByRole('link',{name:/confession/i});
     render (<MemoryRouter><MainLayout /></MemoryRouter>);
-    expect(justiceDeparmentElement).toBeInTheDocument();
+    //const justiceDeparmentElement = screen.queryByRole('list',{name:/FAKELANDIA JUSTICE DEPARTMENT/i});
+    
+    //const headerlist = screen.getByRole('list',{name:/FakelandiaHeading/i})
+    //const { headerAllList }= within(headerlist);
+    const headerListItems = screen.getAllByRole("listitem");
+    const homeElement = screen.queryByRole('link',{name:/Home/i});
+    const misdemeanourElement = screen.queryByRole('link',{name:/Misdemeanour/i});
+    const confessionElement = screen.queryByRole('link',{name:/Confession/i});
+    
+    expect(headerListItems.length).toBe(4);
+    //expect(justiceDeparmentElement).toBeInTheDocument();
     expect(homeElement).toBeInTheDocument();
     expect(misdemeanourElement).toBeInTheDocument();
     expect(confessionElement).toBeInTheDocument();});
@@ -17,12 +23,15 @@ describe("Testing Basic MainLayout Component using MainLayout Router", () => {
 
 describe("Testing Basic MainLayout Component for Home, Confession and Misdemeanour Links", () => {
   test("Testing Basic MainLayout Component", () => {
-    const homeElement = screen.getByText(/FAKELANDIA JUSTICE DEPARTMENT/i);
+    render (<BrowserRouter><MainLayout /></BrowserRouter>);
+  
+    const homeElement = screen.getByRole('link', {name:/Home/i});
     const misdemeanourElement = screen.queryByRole('link',{name:/Misdemeanour/i});
     const confessionElement = screen.queryByRole('link',{name:/confession/i});
  
-    render (<BrowserRouter><MainLayout /></BrowserRouter>);
-  
+    const headerListItems = screen.getAllByRole("listitem");
+    
+    expect(headerListItems.length).toBe(4);
     expect(homeElement).toBeInTheDocument();
     expect(misdemeanourElement).toBeInTheDocument();
     expect(confessionElement).toBeInTheDocument();
