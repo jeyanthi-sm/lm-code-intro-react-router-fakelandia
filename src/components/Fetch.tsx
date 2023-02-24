@@ -3,6 +3,7 @@ import { useState, useContext, useEffect, useMemo } from "react";
 import PunishmentImage from "./PunishmentImage";
 import { FakelandiaContext } from './context';
 import Misdemean from "./Misdemean";
+import MisdemeanourDefault from "./MisdemeanourDefault";
 
 export interface FetchProps {
   url?:string;
@@ -15,8 +16,6 @@ const Fetch:React.FC<FetchProps> = (inputFetchProps:FetchProps) => {
     
     const contextGetMisdemeanour = useContext(FakelandiaContext);
 
-    //const passedvalue = useContext(MisdemeanourContext);
-    //console.log(passedvalue);
     
     const [apiGetMisDemeanour, setapiGetMisDemeanour] = useState({misdemeanours:[]});
        
@@ -29,6 +28,7 @@ const Fetch:React.FC<FetchProps> = (inputFetchProps:FetchProps) => {
 
         const response = await fetch(url);
         const json = await response.json();
+        
         setapiGetMisDemeanour(json);
       
 
@@ -50,15 +50,13 @@ const Fetch:React.FC<FetchProps> = (inputFetchProps:FetchProps) => {
     
     } 
     //const FakelandiaContext = createContext(); 
-    //const fetchedMisdemeanour = useContext(FakelandiaContext);
+    let fetchedMisdemeanour = useContext(FakelandiaContext);
+    
     const misdemeanourLiftFilter = useMemo(() => apiGetMisDemeanour.misdemeanours.filter(element => element["misdemeanour"] === "lift"), [apiGetMisDemeanour.misdemeanours]);
     const misdemeanourRudenessFilter = useMemo(() => apiGetMisDemeanour.misdemeanours.filter(element => element["misdemeanour"] === "rudeness"), [apiGetMisDemeanour.misdemeanours]);
     const misdemeanourVegetablesFilter = useMemo(() => apiGetMisDemeanour.misdemeanours.filter(element => element["misdemeanour"] === "vegetables"), [apiGetMisDemeanour.misdemeanours]);
     const misdemeanourUnitedFilter = useMemo(() => apiGetMisDemeanour.misdemeanours.filter(element => element["misdemeanour"] === "united"), [apiGetMisDemeanour.misdemeanours]);
     
-//const FakelandiaContext = createContext({apiGetMisDemeanour, setapiGetMisDemeanour}); 
-//<FakelandiaContext.Provider value={{apiGetMisDemeanour,setapiGetMisDemeanour}}> 
-//<FakelandiaContext.Provider value={apiGetMisDemeanour}> 
 
 
 return (
@@ -89,6 +87,7 @@ apiGetMisDemeanour.misdemeanours.map((misdemeanour, index) => {
 </table>
 </>
 
+<MisdemeanourDefault />
 </FakelandiaContext.Provider>
 
 )}
