@@ -6,8 +6,8 @@ describe("Testing Basic CanSubmitButtonBeEnabled", () => {
   test("Testing Basic Submit Button enabled", async () => {
     const inputFormData = {
       subject:"Testing",
-      contactReason:"lift",
-      contactReasonDetails:"Eating green vegetables is not good",
+      reason:"lift",
+      details:"Eating green vegetables is not good",
   }
     const canBeEnabledResult = canSubmitButtonBeEnabled({...inputFormData});
     expect(canBeEnabledResult).toBeTruthy();
@@ -19,9 +19,9 @@ describe("Testing Basic CanSubmitButtonBeEnabled", () => {
 describe("Testing Basic CanSubmitButtonBeEnabled False", () => {
   test("Testing Basic Submit Button Disabled", async () => {
     const inputFormData = {
-      subject:"Testing",
-      contactReason:"just-talk",
-      contactReasonDetails:"talking is not good",
+      subject:"",
+      reason:"",
+      details:"",
   }
     const canBeEnabledResult = canSubmitButtonBeEnabled({...inputFormData});
     expect(canBeEnabledResult).toBeFalsy();
