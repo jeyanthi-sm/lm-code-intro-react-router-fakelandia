@@ -43,14 +43,41 @@ return (
 
 
 function MisdemeanourDefault() {
-  return (
-    
-      <FakelandiaContext.Consumer>
-      {value => <span>{value.misdemeanours[0].citizenId}</span>}
-
+  const misdemeanourFilter = useContext(FakelandiaContext);
+  const misdemeanourLiftFilter =  misdemeanourFilter.misdemeanours.filter(element => element["misdemeanour"] === "lift");
+  const misdemeanourRudenessFilter =  misdemeanourFilter.misdemeanours.filter(element => element["misdemeanour"] === "rudeness");
+  const misdemeanourVegetablesFilter =  misdemeanourFilter.misdemeanours.filter(element => element["misdemeanour"] === "vegetables");
+  const misdemeanourUnitedFilter =  misdemeanourFilter.misdemeanours.filter(element => element["misdemeanour"] === "united") ;
   
-   </FakelandiaContext.Consumer>
+  
+  return (
+   <>  
+   <table border={1}> 
+<tr> 
+<thead> CitizenId </thead>
+<thead> Date </thead>
+<thead> Misdemeanour </thead>
+<thead> Punishment Idea </thead>
+</tr>
+<tbody>
 
+    { misdemeanourLiftFilter  && 
+misdemeanourLiftFilter.map((misdemeanour, index) => {
+   return <> 
+   <tr><td>{misdemeanour["citizenId"]}</td>
+       <td>{misdemeanour["date"]}</td>
+       <td>{misdemeanour["misdemeanour"]}</td>
+       <td><PunishmentImage width={100} height={100}/></td></tr>
+    </>
+    })
+   }  
+</tbody>
+</table>
+</>
+
+
+      
+   
     
   );
 }
