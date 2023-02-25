@@ -15,7 +15,9 @@ export interface FakelandiaContextProps {
 
 //export const FakelandiaContext = createContext('default value');
 //export const MisdemeanourContext5 = createContext('ALL');
-export const MisdemeanourContext = createContext<string>('ALL');
+//export const MisdemeanourContext = createContext<string>('ALL');
+export const MisdemeanourContext = createContext<number>(4);
+
 export const FakelandiaContext:React.Context<FakelandiaContextProps> = createContext<FakelandiaContextProps>({misdemeanours:[]}); 
 //createContext<TypeForMyContextGoesHere>(defaultValueWhichMustMatchThatTypeGoesHere)
 
