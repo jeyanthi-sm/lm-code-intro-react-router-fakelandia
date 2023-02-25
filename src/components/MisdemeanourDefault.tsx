@@ -2,67 +2,59 @@ import React, { createContext } from "react";
 import { useState, useEffect,  useMemo } from "react";
 import PunishmentImage from "./PunishmentImage";
 import { useContext } from "react";
-import { FakelandiaContext } from "./context";
-/*import Fetch from "./Fetch";
-export interface MisdemeanourDefaultProps {
-  url:string;
-} 
-const MisdemeanourDefault:React.FC = () => {
-  
-  const passedvalue = useContext(FakelandiaContext);
-  console.log(passedvalue);
-  /*  const fetchedMisdemeanour = useContext(FakelandiaContext);
-    const misdemeanourLiftFilter = useMemo(() => fetchedMisdemeanour.misdemeanours.filter(element => element["misdemeanour"] === "lift"), [apiGetMisDemeanour.misdemeanours]);
-    const misdemeanourRudenessFilter = useMemo(() =>fetchedMisdemeanour.misdemeanours.filter(element => element["misdemeanour"] === "rudeness"), [apiGetMisDemeanour.misdemeanours]);
-    const misdemeanourVegetablesFilter = useMemo(() => fetchedMisdemeanour.misdemeanours.filter(element => element["misdemeanour"] === "vegetables"), [apiGetMisDemeanour.misdemeanours]);
-    const misdemeanourUnitedFilter = useMemo(() => fetchedMisdemeanour.misdemeanours.filter(element => element["misdemeanour"] === "united"), [apiGetMisDemeanour.misdemeanours]);
-  
-    /* const [apiGetMisDemeanour, setapiGetMisDemeanour] = useState({misdemeanours:[]});
-    const [apiError, setapiError] = useState<string>();
-    
-  const FakelandiaContext = createContext({apiGetMisDemeanour, setapiGetMisDemeanour}); 
-  
-  const fetchedMisdemeanour = useContext(FakelandiaContext);
-  const misdemeanourLiftFilter = useMemo(() => apiGetMisDemeanour.misdemeanours.filter(element => element["misdemeanour"] === "lift"), [apiGetMisDemeanour.misdemeanours]);
-  const misdemeanourRudenessFilter = useMemo(() => apiGetMisDemeanour.misdemeanours.filter(element => element["misdemeanour"] === "rudeness"), [apiGetMisDemeanour.misdemeanours]);
-  const misdemeanourVegetablesFilter = useMemo(() => apiGetMisDemeanour.misdemeanours.filter(element => element["misdemeanour"] === "vegetables"), [apiGetMisDemeanour.misdemeanours]);
-  const misdemeanourUnitedFilter = useMemo(() => apiGetMisDemeanour.misdemeanours.filter(element => element["misdemeanour"] === "united"), [apiGetMisDemeanour.misdemeanours]);
-    <FakelandiaContext.Consumer value={{apiGetMisDemeanour,setapiGetMisDemeanour}}> 
-<>
-
-  
-return (
-  <> 
-    <FakelandiaContext.Consumer>
-      
-    </FakelandiaContext.Consumer>   
-    </>
-  );
-  
-} */
-
-
-function MisdemeanourDefault() {
+import { FakelandiaContext, MisdemeanourContext } from "./context";
+import { MisdemeanourKind } from '../types/misdemeanours.types';
+  const MisdemeanourDefault:React.FC = () => {
   const misdemeanourFilter = useContext(FakelandiaContext);
-  const misdemeanourLiftFilter =  misdemeanourFilter.misdemeanours.filter(element => element["misdemeanour"] === "lift");
+  const misdemeanourSelectValue = useContext(MisdemeanourContext);
+  
+  console.log(misdemeanourSelectValue);
+  const misdemeanourSelectFilter = misdemeanourSelectValue === 4 ? misdemeanourFilter.misdemeanours :
+  misdemeanourFilter.misdemeanours.filter((elem) => typeof elem.misdemeanour === 'number' && elem.misdemeanour === misdemeanourSelectValue);
+  /*switch (misdemeanourSelectValue){
+    case 0: console.log("rudeness");
+            misdemeanourSelectFilter = misdemeanourFilter.misdemeanours.filter((element) =>  typeof element.misdemeanour === 'string' && element.misdemeanour === "lift");
+            console.log(misdemeanourSelectFilter);
+            break;
+    case 1: console.log("vegetables");
+    misdemeanourSelectFilter = misdemeanourFilter.misdemeanours.filter((element) => element.misdemeanour === "vegetables");
+    console.log(misdemeanourSelectFilter);        
+    break;
+
+    case 2: console.log("lift");
+       misdemeanourSelectFilter = misdemeanourFilter.misdemeanours.filter((element) => element.misdemeanour === "lift");
+       console.log(misdemeanourSelectFilter);     
+       break;        
+    case 3: 
+    console.log("united");
+    misdemeanourSelectFilter = misdemeanourFilter.misdemeanours.filter((element) => element.misdemeanour === "united");
+    console.log(misdemeanourSelectFilter);        
+    break;
+    default: console.log("ALL");
+    misdemeanourSelectFilter = misdemeanourFilter.misdemeanours;
+    console.log(misdemeanourSelectFilter);         
+    break;
+  }
+  */
+ /* const misdemeanourLiftFilter =  misdemeanourFilter.misdemeanours.filter((element) => element['misdemeanour'] === "lift");
   const misdemeanourRudenessFilter =  misdemeanourFilter.misdemeanours.filter(element => element["misdemeanour"] === "rudeness");
   const misdemeanourVegetablesFilter =  misdemeanourFilter.misdemeanours.filter(element => element["misdemeanour"] === "vegetables");
   const misdemeanourUnitedFilter =  misdemeanourFilter.misdemeanours.filter(element => element["misdemeanour"] === "united") ;
-  
-  
+  const misdemeanourAllFilter = misdemeanourFilter.misdemeanours;
+*/
   return (
    <>  
-   <table border={1}> 
+  <table border={1}> 
 <tr> 
 <thead> CitizenId </thead>
 <thead> Date </thead>
 <thead> Misdemeanour </thead>
 <thead> Punishment Idea </thead>
 </tr>
-<tbody>
+<tbody> : <div> </div>
 
-    { misdemeanourLiftFilter  && 
-misdemeanourLiftFilter.map((misdemeanour, index) => {
+    { misdemeanourSelectFilter  && 
+misdemeanourSelectFilter.map((misdemeanour, index) => {
    return <> 
    <tr><td>{misdemeanour["citizenId"]}</td>
        <td>{misdemeanour["date"]}</td>
@@ -74,11 +66,6 @@ misdemeanourLiftFilter.map((misdemeanour, index) => {
 </tbody>
 </table>
 </>
-
-
-      
-   
-    
   );
 }
 export default MisdemeanourDefault;
