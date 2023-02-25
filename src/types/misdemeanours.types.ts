@@ -6,8 +6,11 @@ export const MISDEMEANOURS = [
 ] as const;
 export type MisdemeanourKind = (typeof MISDEMEANOURS)[number];
 export const JUST_TALK = 'just-talk';
+export const ALL = 'ALL';
+
 export const ALLCONTACTREASONS  = [...MISDEMEANOURS, JUST_TALK] as const;
 
+export const ALLMISDEMEANOURS  = [...MISDEMEANOURS, ALL] as const;
 
 export type JustTalk = typeof JUST_TALK;
 
@@ -19,8 +22,8 @@ export type Misdemeanour = {
 
 export type FormData = {
     subject:string;
-    contactReason:string;
-    contactReasonDetails:string;
+    reason:string;
+    details:string;
 }
 
 
