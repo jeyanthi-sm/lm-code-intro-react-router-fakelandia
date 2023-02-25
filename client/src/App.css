@@ -1,0 +1,113 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* newly added css */
+.headerClass ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-evenly;
+  
+}
+.disclosure ul{
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+}
+
+.disclosure li{
+  text-decoration-style: none;
+  text-decoration: none;
+  color: red;
+
+}
+.headerClass li {
+
+  text-decoration-style: none;
+  text-decoration: none;
+  color: red;
+}
+
+.mainClass ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.mainClass li {
+
+  text-decoration-style: none;
+  text-decoration: none;
+  color: black;
+}
+
+.footerClass {
+  display: flex;
+  justify-content: right;
+}
+table {
+  width:100;
+  table-layout: auto;
+  width: 100%;
+}
+thead {
+  display: table-cell;
+  vertical-align: inherit;
+  font-weight: bold;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* confession form inputs */
+/* confession form inputs */
+.confessionform {
+  display: flex;
+  flex-direction: row;
+}
+
+
+
+.confessionInputs {
+  display: flex;
+  flex-direction: row;
+  margin: 1%;
+  border:1%;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
