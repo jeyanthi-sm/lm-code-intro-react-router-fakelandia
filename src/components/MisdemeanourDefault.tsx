@@ -11,37 +11,6 @@ import { MisdemeanourKind } from '../types/misdemeanours.types';
   console.log(misdemeanourSelectValue);
   const misdemeanourSelectFilter = misdemeanourSelectValue === 4 ? misdemeanourFilter.misdemeanours :
   misdemeanourFilter.misdemeanours.filter((elem) => typeof elem.misdemeanour === 'number' && elem.misdemeanour === misdemeanourSelectValue);
-  /*switch (misdemeanourSelectValue){
-    case 0: console.log("rudeness");
-            misdemeanourSelectFilter = misdemeanourFilter.misdemeanours.filter((element) =>  typeof element.misdemeanour === 'string' && element.misdemeanour === "lift");
-            console.log(misdemeanourSelectFilter);
-            break;
-    case 1: console.log("vegetables");
-    misdemeanourSelectFilter = misdemeanourFilter.misdemeanours.filter((element) => element.misdemeanour === "vegetables");
-    console.log(misdemeanourSelectFilter);        
-    break;
-
-    case 2: console.log("lift");
-       misdemeanourSelectFilter = misdemeanourFilter.misdemeanours.filter((element) => element.misdemeanour === "lift");
-       console.log(misdemeanourSelectFilter);     
-       break;        
-    case 3: 
-    console.log("united");
-    misdemeanourSelectFilter = misdemeanourFilter.misdemeanours.filter((element) => element.misdemeanour === "united");
-    console.log(misdemeanourSelectFilter);        
-    break;
-    default: console.log("ALL");
-    misdemeanourSelectFilter = misdemeanourFilter.misdemeanours;
-    console.log(misdemeanourSelectFilter);         
-    break;
-  }
-  */
- /* const misdemeanourLiftFilter =  misdemeanourFilter.misdemeanours.filter((element) => element['misdemeanour'] === "lift");
-  const misdemeanourRudenessFilter =  misdemeanourFilter.misdemeanours.filter(element => element["misdemeanour"] === "rudeness");
-  const misdemeanourVegetablesFilter =  misdemeanourFilter.misdemeanours.filter(element => element["misdemeanour"] === "vegetables");
-  const misdemeanourUnitedFilter =  misdemeanourFilter.misdemeanours.filter(element => element["misdemeanour"] === "united") ;
-  const misdemeanourAllFilter = misdemeanourFilter.misdemeanours;
-*/
   return (
    <>  
   <table border={1}> 
