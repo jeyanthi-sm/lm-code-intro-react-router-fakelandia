@@ -39,7 +39,6 @@ const Fetch:React.FC<FetchProps> = (inputFetchProps:FetchProps) => {
     };
     fetchApiDemeanour()}, [url] );
 
-    //const contextGetMisdemeanour = useContext(FakelandiaContext);
    
 
     const handleChange= (event: React.ChangeEvent<HTMLSelectElement>) =>
@@ -49,7 +48,6 @@ const Fetch:React.FC<FetchProps> = (inputFetchProps:FetchProps) => {
           
     
     } 
-    //const FakelandiaContext = createContext(); 
     let fetchedMisdemeanour = useContext(FakelandiaContext);
     
     const misdemeanourLiftFilter = useMemo(() => apiGetMisDemeanour.misdemeanours.filter(element => element["misdemeanour"] === "lift"), [apiGetMisDemeanour.misdemeanours]);
@@ -61,34 +59,8 @@ const Fetch:React.FC<FetchProps> = (inputFetchProps:FetchProps) => {
 
 return (
     <FakelandiaContext.Provider value={apiGetMisDemeanour}>  
-  <>
-  
-
-<table border={1}> 
-<tr> 
-<thead> CitizenId </thead>
-<thead> Date </thead>
-<thead> Misdemeanour </thead>
-<thead> Punishment Idea </thead>
-</tr>
-<tbody>
-
-    { apiGetMisDemeanour  && 
-apiGetMisDemeanour.misdemeanours.map((misdemeanour, index) => {
-   return <> 
-   <tr><td>{misdemeanour["citizenId"]}</td>
-       <td>{misdemeanour["date"]}</td>
-       <td>{misdemeanour["misdemeanour"]}</td>
-       <td><PunishmentImage width={100} height={100}/></td></tr>
-    </>
-    })
-   }  
-</tbody>
-</table>
-</>
-
-<MisdemeanourDefault />
-</FakelandiaContext.Provider>
+    <MisdemeanourDefault />
+    </FakelandiaContext.Provider>
 
 )}
 export default Fetch;

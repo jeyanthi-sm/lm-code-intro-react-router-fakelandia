@@ -82,7 +82,7 @@ describe("Fetch Sample Data using MOCK Function", () => {
       })
     );
     await screen.findAllByText(SAMPLEFETCH.misdemeanours[0].citizenId);
-    //expect(screen.getAllByText(SAMPLEFETCH.misdemeanours[0].citizenId)).toBeInTheDocument();
+    expect(screen.getByText(SAMPLEFETCH.misdemeanours[0].citizenId)).toBeInTheDocument();
     
   });
 });
