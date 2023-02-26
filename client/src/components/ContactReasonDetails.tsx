@@ -16,8 +16,10 @@ const ContactReasonDetails:React.FC<ContactReasonDetailsProps> = (inputProps) =>
     return (
     <>
     <div className="confessionInputs">
-      
-       <label htmlFor="ContactReasonDetailsId"> </label>
+      <div className="confessionLabels"> 
+      <label htmlFor="ContactReasonDetailsId"> </label>
+      </div>
+      <div className="confessionInput"> 
        <textarea
          id="ContactReasonDetailsId"
          placeholder="ContactReasonDetails"
@@ -28,6 +30,7 @@ const ContactReasonDetails:React.FC<ContactReasonDetailsProps> = (inputProps) =>
            inputProps.onChangeHandler(e.target.value);
          }}
        />
+       </div>
       </div>
       {errorValidation !== "OK" && (
         <div>

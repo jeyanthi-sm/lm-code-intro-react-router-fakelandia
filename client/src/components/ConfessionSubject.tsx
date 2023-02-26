@@ -15,7 +15,10 @@ const ConfessionSubject:React.FC<ConfessionSubjectProps> = (inputConfessionSubje
    return (
    <>
       <div className="confessionInputs">
+      <div className="confessionLabels"> 
       <label htmlFor="SubjectLineId">Subject </label>
+      </div>
+      <div className="confessionInput">
       <input
         id="SubjectLineId"
         type="text"
@@ -27,6 +30,7 @@ const ConfessionSubject:React.FC<ConfessionSubjectProps> = (inputConfessionSubje
           inputConfessionSubjectProps.onChangeHandler(e.target.value);
         }}
       />
+      </div>
       </div>
        {errorValidation !== "OK" && (
         <div>

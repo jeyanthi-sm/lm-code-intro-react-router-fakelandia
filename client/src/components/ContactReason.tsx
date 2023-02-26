@@ -26,17 +26,18 @@ const ContactReason:React.FC<ContactReasonProps> = (inputContactReasonProps) => 
 return (
 <> 
 <div className="confessionInputs">
-      
-<label htmlFor="ContactReasonId">Reason for contact</label>
+  <div className="confessionLabels"> 
+    <label htmlFor="ContactReasonId">Reason for contact</label>
+  </div>
 
-
-
-<select id="ContactReasonId" value={demeanourSelect} name="ContactReason" 
-onChange={handleChange} >
-{ typeof ALLCONTACTREASONS &&  ALLCONTACTREASONS.map((misdemvalue, index) => {
-return  <option key={index} value = {misdemvalue}> {misdemvalue} </option> })}
+  <div className="confessionInput"> 
+  <select id="ContactReasonId" value={demeanourSelect} name="ContactReason" 
+  onChange={handleChange} >
+  { typeof ALLCONTACTREASONS &&  ALLCONTACTREASONS.map((misdemvalue, index) => {
+  return  <option key={index} value = {misdemvalue}> {misdemvalue} </option> })}
   
-</select>
+  </select>
+  </div>
 </div>
 {errorValidation !== "OK" && (
         <div>

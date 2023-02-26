@@ -14,8 +14,8 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  /*background-color: #282c34; */
+  min-height: 10vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,6 +25,11 @@
 }
 
 .App-link {
+  color: #61dafb;
+}
+.App-li {
+  text-decoration: none;
+  -moz-text-decoration-style: none;
   color: #61dafb;
 }
 
@@ -75,10 +80,7 @@
   text-decoration: none;
   color: black;
 }
-.errorDiv {
-  color: red;
-  font-weight: bold;
-}
+
 .footerClass {
   display: flex;
   justify-content: right;
@@ -109,21 +111,8 @@ thead {
   display: flex;
   flex-direction: row;
   margin: 1%;
+  border:1%;
   width: 100%;
-  padding:1%;
-/*  justify-content: space-evenly;*/
-}
-.confessionLabels {
-  display: flex;
-  margin: 1%;
-  justify-content: flex-end;
-  width: 100%;
+  justify-content: space-evenly;
 }
 
-
-.confessionInput {
-  display: flex;
-  margin: 1%;
-  width: 100%;
-  justify-content: flex-start;
-}
