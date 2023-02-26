@@ -1,11 +1,16 @@
 {
 	"name": "server",
 	"version": "1.0.0",
+	"homepage": "https://github.com/jeyanthi-sm/lm-code-intro-react-router-fakelandia",
+  
 	"description": "",
 	"main": "index.js",
 	"scripts": {
 		"test": "",
-		"start": "nodemon index.ts --no-warnings"
+		"start": "nodemon index.ts --no-warnings",
+		"predeploy": "npm run build",
+			"deploy": "gh-pages -d build"
+		  	  
 	},
 	"author": "",
 	"license": "ISC",
