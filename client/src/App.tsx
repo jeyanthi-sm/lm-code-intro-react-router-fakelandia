@@ -1,4 +1,4 @@
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, HashRouter } from 'react-router-dom';
 import './App.css';
 
 import { FakelandiaRouter } from './components/FakelandiaRouter';
@@ -7,9 +7,9 @@ function App() {
   return (
     <> 
     <div className="App">
-    <BrowserRouter> 
+    <HashRouter> 
       <FakelandiaRouter />
-    </BrowserRouter>
+    </HashRouter>
     </div>
     </>
     );
