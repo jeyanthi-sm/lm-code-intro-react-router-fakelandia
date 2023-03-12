@@ -1,6 +1,6 @@
 import e from "express";
-import React, { SetStateAction, useState } from "react"
-import { MISDEMEANOURS,  ALLCONTACTREASONS } from "../types/misdemeanours.types"
+import React, { useState } from "react"
+import {   ALLCONTACTREASONS } from "../types/misdemeanours.types"
 import ErrorMessage from "./ErrorMessage";
 import { validateContactReason } from "./utils/validateConfessionContactReason";
 export interface ContactReasonProps {

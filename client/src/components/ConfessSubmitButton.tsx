@@ -1,7 +1,4 @@
 import React from "react";
-import { validateContactReasonForSubmitButton } from "./utils/validateConfessionContactReason";
-import { validateSubjectValue } from "./utils/validateConfessionSubject";
-import { validateContactReasonDetails } from "./utils/validateConfessionContactReasonDetails";
 interface ConfessSubmitButtonProps {
    canBeEnabled?:boolean;
   onClickHandler: (event: React.MouseEvent<HTMLElement>) => void;

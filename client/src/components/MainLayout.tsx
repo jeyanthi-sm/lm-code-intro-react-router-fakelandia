@@ -1,4 +1,4 @@
-import { Outlet, Link, NavLink } from "react-router-dom";
+import { Outlet,  NavLink } from "react-router-dom";
 import FooterFakeLandia from "./FooterFakelandia";
 const activeStyle = {
   textDecoration: "overline", color:"green",

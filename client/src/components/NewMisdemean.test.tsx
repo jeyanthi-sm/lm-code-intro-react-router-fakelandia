@@ -1,6 +1,5 @@
 import NewMisdemean from "./NewMisdemean";
 import { render, screen } from "@testing-library/react";
-import Fetch from "./Fetch";
 import { rest } from "msw";
 import userEvent from "@testing-library/user-event";
 import server from "../mocks/servers";

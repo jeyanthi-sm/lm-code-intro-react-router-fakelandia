@@ -1,6 +1,6 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { ALLMISDEMEANOURS } from "../types/misdemeanours.types";
-import {  FakelandiaContext,  FakelandiaContextDataProvider,  MisdemeanourContext} from "./context";
+import { FakelandiaContextDataProvider, MisdemeanourContext } from "./context";
 export interface Misdemeanprops {
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }

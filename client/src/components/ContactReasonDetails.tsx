@@ -1,6 +1,5 @@
 import React  from "react";
 import { useState } from "react";
-import { ContactReasonProps } from "./ContactReason";
 import ErrorMessage from "./ErrorMessage";
 import { validateContactReasonDetails } from "./utils/validateConfessionContactReasonDetails";
 export interface ContactReasonDetailsProps {
