@@ -19,7 +19,7 @@ const MainLayout: React.FC = () => (
       <li> <NavLink to='/'  style={({ isActive }) =>
               isActive ? activeStyle : nonActiveStyle
             }> Home </NavLink></li>
-      <li> <NavLink to='/NewMisdemeanour' style={({ isActive }) =>
+      <li> <NavLink to='/Misdemean' style={({ isActive }) =>
               isActive ? activeStyle : nonActiveStyle
             }> Misdemeanour</NavLink></li>   
       <li> <NavLink to='/Confession' style={({ isActive }) =>
