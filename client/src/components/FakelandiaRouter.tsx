@@ -2,6 +2,7 @@ import { Route,Routes } from 'react-router-dom';
 import Home from './Home';
 import Confession from './Confession';
 import NewMisdemean from './NewMisdemean'
+import Misdemean from './Misdemean'
 
 import MainLayout from './MainLayout';
 import NotFound from './NotFound';
@@ -21,7 +22,7 @@ export const FakelandiaRouter : React.FC = () => {
       <Route path="/" element={<MainLayout />} > 
       <Route index element={<Home/>} />
       <Route path='Confession' element={<Confession />} />
-      <Route path='NewMisdemean' element={<NewMisdemean onChange={handleChange}/>} />
+      <Route path='Misdemean' element={<Misdemean onChange={handleChange}/>} />
       <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

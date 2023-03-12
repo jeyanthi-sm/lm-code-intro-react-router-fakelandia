@@ -5,7 +5,7 @@ const mockFunction = jest.fn();
 describe("Testing Basic Misdemeanour Component", () => {
   test("Testing Basic Misdemanour Component", async () => {
     render (<Misdemean onChange={mockFunction}/>);
-    const misdemeanSelectValue = "2";
+    const misdemeanSelectValue = "vegetables";
     const user = userEvent.setup();
     const node = screen.getByRole('combobox');
     console.log(node);  
